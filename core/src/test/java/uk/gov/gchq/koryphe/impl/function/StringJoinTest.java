@@ -16,17 +16,14 @@
 
 package uk.gov.gchq.koryphe.impl.function;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-import org.junit.jupiter.api.Test;
-
-import uk.gov.gchq.koryphe.function.FunctionTest;
-import uk.gov.gchq.koryphe.util.JsonSerialiser;
-
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import uk.gov.gchq.koryphe.function.FunctionTest;
+import uk.gov.gchq.koryphe.util.JsonSerialiser;
+
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -48,8 +45,11 @@ public class StringJoinTest extends FunctionTest<StringJoin> {
     public void shouldHandleNullDelimiter() {
         // Given
         final StringJoin<String> function = new StringJoin<>(null);
-        final Set<String> input = Sets.newHashSet("a", "b", "c");
-
+        final Set<String> input = new LinkedHashSet<>();
+        input.add("a");
+        input.add("b");
+        input.add("c");
+        
         // When
         final String result = function.apply(input);
 
@@ -61,7 +61,10 @@ public class StringJoinTest extends FunctionTest<StringJoin> {
     public void shouldJoinIterableOfStrings() {
         // Given
         final StringJoin<String> function = new StringJoin<>();
-        final Set<String> input = Sets.newHashSet("a", "b", "c");
+        final Set<String> input = new LinkedHashSet<>();
+        input.add("a");
+        input.add("b");
+        input.add("c");
 
         // When
         final String result = function.apply(input);
@@ -87,7 +90,10 @@ public class StringJoinTest extends FunctionTest<StringJoin> {
     public void shouldJoinIterableOfStringsWithDelimiter() {
         // Given
         final StringJoin<String> function = new StringJoin<>(",");
-        final Set<String> input = Sets.newHashSet("a", "b", "c");
+        final Set<String> input = new LinkedHashSet<>();
+        input.add("a");
+        input.add("b");
+        input.add("c");
 
         // When
         final String result = function.apply(input);
